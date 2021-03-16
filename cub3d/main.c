@@ -5,7 +5,7 @@
 int	start(char *argv, void **mlx)
 {
 	t_fmt	fmt;
-	int	fd
+	int	fd;
 	void	*win;
 
 	fd = open(argv, O_RDONLY);
