@@ -48,26 +48,14 @@ void	read_path(char *line, t_fmt **fmt)
 	}
 }
 
-int	rgb_hex(char *line)
+/*void	rgb_hex(char *line, t_fmt *fmt)
 {
-	int	tmp;
-	char	*color;
+	int	color;
 
-	color = malloc(1);
-	color[0] = 0;
 	while (*line)
 	{
-		while (!(ft_isdigit(*line)))
-			line++;
-		tmp = ft_atoi(line);
-		color = ft_strjoin(color, ft_itoa_base(tmp, "0123456789abcdef"));
-		while (ft_isdigit(*line))
-			line++;
-	}
-	tmp = ft_atoi_base(color, "0123456789abcdef");
-	free(color);
-	return (tmp);
-}
+		while (
+}*/
 
 void	get_info(char *line, t_fmt *fmt)
 {	
@@ -77,10 +65,8 @@ void	get_info(char *line, t_fmt *fmt)
 			!(ft_strncmp(line, "WE", 2)) || !(ft_strncmp(line, "EA", 2)) ||
 			!(ft_strncmp(line, "S ", 2)))
 		read_path(line, &fmt);
-	else if (*line == 'F')
-		fmt->floor = rgb_hex(line);
-	else if  (*line == 'C')
-		fmt->ceil = rgb_hex(line);
+	else if (*line == 'F' || *line == 'C')
+		;//rgb_hex(line, &fmt);
 	else if (ft_isspace(*line) || *line == '1')
 		;//read_map();
 	else if (*line != '\n' && *line != 0)

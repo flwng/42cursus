@@ -24,7 +24,7 @@ clean:
 	cd libft && make clean
 
 fclean:
-	${RM} ${NAME}
+	${RM} ${NAME} ${OBJS}
 	cd libft && make fclean
 
 re: fclean all

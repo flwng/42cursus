@@ -23,8 +23,8 @@ typedef struct	s_fmt
 {
 	int	res_x;
 	int	res_y;
-	char	floor[9];
-	char	ceil[9];
+	int	floor;
+	int	ceil;
 	char	*north;
 	char	*south;
 	char	*east;
@@ -33,4 +33,6 @@ typedef struct	s_fmt
 }		t_fmt;
 
 t_fmt	read_info(int fd);
+int	ft_atoi_base(char *str, char *base);
+char	*ft_itoa_base(int n, char *base);
 #endif

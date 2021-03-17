@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 14:08:26 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/18 17:45:22 by flwang           ###   ########.fr       */
+/*   Created: 2021/01/11 16:17:28 by flwang            #+#    #+#             */
+/*   Updated: 2021/01/13 11:23:55 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*ptr;
-	size_t	len;
-	size_t	i;
+	const unsigned char	*ptr;
+	size_t				i;
 
-	if (!s1 || !s2)
-		return (0);
 	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	if (!(ptr = malloc(len)))
-		return (0);
-	ft_strlcpy(ptr, s1, len);
-	ft_strlcat(ptr, s2, len);
-	free(s1);
-	free(s2);
-	return (ptr);
+	ptr = s;
+	while (i < n)
+	{
+		if (ptr[i] == (unsigned char)c)
+			return (void *)(s + i);
+		i++;
+	}
+	return (0);
 }

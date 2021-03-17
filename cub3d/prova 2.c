@@ -26,11 +26,12 @@ int main(void)
 		x = 400;
 		while (x < 1000)
 		{
-			my_mlx_put_pixel(&img, x, y, 65280);
+			my_mlx_put_pixel(&img, x, y, 0x00FF0000);
 			x++;
 		}
 		y++;
 	}
 	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
 	mlx_loop(mlx);
+
 }
