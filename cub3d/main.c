@@ -14,12 +14,14 @@ void	start(char *argv, void **mlx)
 {
 	t_fmt	fmt;
 	t_img	img;
+	char	**map;
 	int	fd;
 	void	*win;
 	int	x = 400;
 	int	y = 100;
 
 	fd = open(argv, O_RDONLY);
+	map = malloc(sizeof(char **) * 1);
 	fmt = read_info(fd);
 	close(fd);
 	win = mlx_new_window(*mlx, fmt.res_x, fmt.res_y, "prova");

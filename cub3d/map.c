@@ -70,7 +70,7 @@ int	rgb_hex(char *line)
 }
 
 void	get_info(char *line, t_fmt *fmt)
-{	
+{
 	if (*line == 'R')
 		read_res(line, &fmt);
 	else if (!(ft_strncmp(line, "NO", 2)) || !(ft_strncmp(line, "SO", 2)) ||
@@ -82,7 +82,7 @@ void	get_info(char *line, t_fmt *fmt)
 	else if  (*line == 'C')
 		fmt->ceil = rgb_hex(line);
 	else if (ft_isspace(*line) || *line == '1')
-		;//read_map();
+		fmt->map = read_map(line, &fmt);
 	else if (*line != '\n' && *line != 0)
 	{
 		perror("Error\n");
@@ -95,7 +95,13 @@ t_fmt	read_info(int fd)
 	t_fmt	fmt;
 	char	*line;
 
+	fmt.map_size = 0;
+	fmt.map = 0;
 	while (get_next_line(fd, &line))
+	{
 		get_info(line, &fmt);
+		free(line);
+	}
+	free(line);
 	return (fmt);
 }

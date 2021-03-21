@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 cc = gcc
 RM = rm -f
 
-SRCS = main.c map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ft_atoi_base.c ft_itoa_base.c
+SRCS = main.c map.c get_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ft_atoi_base.c ft_itoa_base.c
 OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}

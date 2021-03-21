@@ -30,9 +30,12 @@ typedef struct	s_fmt
 	char	*east;
 	char	*west;
 	char	*sprite;
+	char	**map;
+	int	map_size;
 }		t_fmt;
 
 t_fmt	read_info(int fd);
+char	**read_map(char *line, t_fmt **fmt);
 int	ft_atoi_base(char *str, char *base);
 char	*ft_itoa_base(int n, char *base);
 #endif
