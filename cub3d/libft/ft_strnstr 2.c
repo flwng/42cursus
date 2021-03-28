@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 16:19:29 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/18 16:25:35 by flwang           ###   ########.fr       */
+/*   Created: 2021/01/12 12:51:49 by flwang            #+#    #+#             */
+/*   Updated: 2021/01/20 16:33:47 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
-	if (c == '\t' || c == '\v' ||
-		c == '\f' || c == '\r' || c == ' ')
-		return (1);
+	size_t i;
+	size_t j;
+
+	if (!*s2)
+	{
+		return ((char*)s1);
+	}
+	i = 0;
+	while (s1[i] && i < len)
+	{
+		j = 0;
+		while (s2[j] == s1[i + j] && (i + j) < len)
+		{
+			if (!s2[j + 1])
+				return ((char*)s1 + i);
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }

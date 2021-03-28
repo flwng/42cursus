@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 16:19:29 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/18 16:25:35 by flwang           ###   ########.fr       */
+/*   Created: 2021/01/13 18:12:43 by flwang            #+#    #+#             */
+/*   Updated: 2021/01/13 18:14:24 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (c == '\t' || c == '\v' ||
-		c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

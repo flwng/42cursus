@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 16:19:29 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/18 16:25:35 by flwang           ###   ########.fr       */
+/*   Created: 2021/01/12 14:26:22 by flwang            #+#    #+#             */
+/*   Updated: 2021/01/14 19:34:56 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+int	ft_atoi(const char *str)
 {
-	if (c == '\t' || c == '\v' ||
-		c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
+	int sum;
+	int sign;
+
+	sign = 1;
+	sum = 0;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+	{
+		str++;
+	}
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign *= -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		sum = sum * 10 + (*str - '0');
+		str++;
+	}
+	return (sum * sign);
 }
