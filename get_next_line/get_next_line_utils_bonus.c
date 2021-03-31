@@ -1,4 +1,16 @@
-#include "get_next_line.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/22 11:48:57 by flwang            #+#    #+#             */
+/*   Updated: 2021/01/22 11:49:28 by flwang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *line)
 {
@@ -7,7 +19,7 @@ size_t	ft_strlen(char *line)
 	if (!line)
 		return (0);
 	len = 0;
-	while(line[len])
+	while (line[len])
 		len++;
 	return (len);
 }

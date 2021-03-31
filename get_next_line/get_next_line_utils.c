@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/22 11:49:49 by flwang            #+#    #+#             */
+/*   Updated: 2021/01/22 11:50:04 by flwang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(char *line)
@@ -7,7 +19,7 @@ size_t	ft_strlen(char *line)
 	if (!line)
 		return (0);
 	len = 0;
-	while(line[len])
+	while (line[len])
 		len++;
 	return (len);
 }
@@ -37,4 +49,3 @@ t_buf	*find_fd(t_buf *list, int fd)
 	list->next = new_node(fd);
 	return (list->next);
 }
-

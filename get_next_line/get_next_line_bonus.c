@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 11:08:30 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/20 18:31:41 by flwang           ###   ########.fr       */
+/*   Updated: 2021/01/22 11:54:17 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	del(t_buf **list, int fd)
 	iter->next = temp->next;
 	free(temp);
 }
-	
+
 char	*reallocation(char **line)
 {
 	size_t	len;
@@ -40,7 +40,7 @@ char	*reallocation(char **line)
 
 	len = ft_strlen(*line);
 	if (!(new = malloc(len + BUFFER_SIZE + 1)))
-		return (0);	
+		return (0);
 	i = 0;
 	while (i < len)
 	{
@@ -52,11 +52,11 @@ char	*reallocation(char **line)
 	return (new);
 }
 
-int     newline(t_buf *list, char **line)
+int		newline(t_buf *list, char **line)
 {
-	int     found;
+	int		found;
 	size_t	len;
-	size_t  iter;
+	size_t	iter;
 
 	found = 0;
 	iter = 0;
@@ -71,7 +71,7 @@ int     newline(t_buf *list, char **line)
 			iter++;
 			break ;
 		}
-		(*line)[len++] = list->buf[iter++];	
+		(*line)[len++] = list->buf[iter++];
 	}
 	(*line)[len] = 0;
 	len = 0;
@@ -88,8 +88,8 @@ int		get_next_line(int fd, char **line)
 	int				nl;
 	int				r;
 
-	if (BUFFER_SIZE <= 0 || (!list &&  !(list = new_node(fd))) || 
-			!(store = find_fd(list, fd)) || fd < 0 || !line) 
+	if (BUFFER_SIZE <= 0 || (!list && !(list = new_node(fd))) ||
+			!(store = find_fd(list, fd)) || fd < 0 || !line)
 		return (-1);
 	*line = 0;
 	nl = 0;
