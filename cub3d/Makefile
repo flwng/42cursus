@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 cc = gcc
 RM = rm -f
 
-SRCS = main.c map.c get_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ft_atoi_base.c ft_itoa_base.c utils.c check.c
+SRCS = $(wildcard *.c) ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}
@@ -12,7 +12,8 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	cd libft && make bonus
 	cd mlx && make
-	${CC} ./libft/libft.a ./mlx/libmlx.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $@ $^
+	cp ./mlx/libmlx.dylib .
+	${CC} ./libft/libft.a -Lmlx -lmlx ./libmlx.dylib -framework OpenGL -framework AppKit -o $@ $^
 
 clean:
 	${RM} ${OBJS}
@@ -23,5 +24,6 @@ fclean:
 	${RM} ${NAME} ${OBJS}
 	cd libft && make fclean
 	cd mlx && make clean
+	rm -f ./libmlx.dylib
 
 re: fclean all

@@ -39,6 +39,9 @@ void	map_lastrow(t_fmt fmt)
 		if (fmt.map[fmt.map_size - 1][i] != '1' &&
 			!(ft_isspace(fmt.map[fmt.map_size - 1][i])))
 			print_error();
+		if (fmt.map[fmt.map_size - 2][i] == '0' &&
+			fmt.map[fmt.map_size - 1][i] != '1')
+			print_error();
 	i++;
 	}
 }
@@ -59,4 +62,4 @@ void	check_fmt(t_fmt fmt)
 		fmt.north == 0 || fmt.south == 0 || fmt.px == -1 || fmt.sprite == 0 ||
 		fmt.map == 0)
 		print_error();
-}
+}	

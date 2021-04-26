@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include "mlx/mlx.h"
 
 void	read_res(char *line, t_fmt **fmt)
 {
@@ -87,13 +88,15 @@ void	get_info(char *line, t_fmt *fmt)
 		print_error();
 }
 
-t_fmt	read_info(int fd)
+t_fmt	read_info(char *argv, t_spr *spr)
 {
 	t_fmt	fmt;
 	char	*line;
 	int	map_nl;
 	int	map;
+	int	fd;
 
+	fd = open(argv, O_RDONLY);
 	init_fmt(&fmt);
 	map_nl = 0;
 	map = 0;
@@ -101,13 +104,14 @@ t_fmt	read_info(int fd)
 	{
 		check_double(line, fmt);
 		check_nl_map(line, &map_nl, &map);
-		if (map && fmt.map_size == 0)
-			map_firstrow(line);
+		if (map && (fmt.map_size == 0 || fmt.map_size == 1))
+			map_firstrow(line, fmt);
 		if (map && fmt.map_size > 0 && *line != 0)
-			check_mapline(line, &fmt);
+			check_mapline(line, &fmt, spr);
 		get_info(line, &fmt);
 		free(line);
 	}
+	close(fd);
 	check_fmt(fmt);
 	map_lastrow(fmt);
 	return (fmt);
