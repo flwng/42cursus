@@ -123,7 +123,7 @@ void			init_fmt(t_fmt *fmt);
 void			check_double(char *line, t_fmt fmt);
 void			map_lastrow(t_fmt fmt);
 void			check_nl_map(char *line, int *map_nl, int *map);
-void			check_fmt(t_fmt fmt);
+void			check_fmt(t_fmt *fmt);
 void			check_mapline(char *line, t_fmt *fmt, t_spr *spr);
 void			map_firstrow(char *line, t_fmt fmt);
 void			load_images(t_fmt *fmt, void *mlx, t_tex *tex);

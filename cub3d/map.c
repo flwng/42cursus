@@ -95,7 +95,7 @@ t_fmt	read_info(char *argv, t_spr *spr)
 	}
 	free(line);
 	close(fd);
-	check_fmt(fmt);
+	check_fmt(&fmt);
 	map_lastrow(fmt);
 	return (fmt);
 }

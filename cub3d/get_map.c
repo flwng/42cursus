@@ -9,8 +9,6 @@ void	map_firstrow(char *line, t_fmt fmt)
 	{
 		while (line[i])
 		{
-			if (line[i] == ' ')
-				line[i] = '1';
 			if (line[i] != '1' && !(ft_isspace(line[i])))
 				print_error();
 			i++;
@@ -20,8 +18,6 @@ void	map_firstrow(char *line, t_fmt fmt)
 	{
 		while (line[i])
 		{
-			if (line[i] == ' ')
-				line[i] = '1';
 			if (line[i] == '0' && fmt.map[0][i] != '1')
 				print_error();
 			i++;
@@ -57,29 +53,38 @@ void	get_pos_camera_dir(t_fmt **fmt, char c, int i)
 	}
 }
 
-void	check_before_line(t_fmt *fmt, char *line, int i)
+void	check_before_line(t_fmt *fmt, char *line, int i, int check)
 {
-	while (ft_strlen(line) < ft_strlen(fmt->map[fmt->map_size - 1])
-		&& fmt->map[fmt->map_size - 1][i])
-		if (fmt->map[fmt->map_size - 1][i++] != '1')
+	if (check == 0)
+	{
+		if ((i > 0 && line[i] == ' ') && ((line[i - 1] != ' ' && line[i - 1] != '1')
+			|| (line[i + 1] == ' ' && line[i + 1] != '1')
+			|| (fmt->map[fmt->map_size - 1][i] != '1'
+			&& fmt->map[fmt->map_size - 1][i] != ' ')))
 			print_error();
+	}
+	else
+		while (ft_strlen(line) < ft_strlen(fmt->map[fmt->map_size - 1])
+			&& fmt->map[fmt->map_size - 1][i])
+			if (fmt->map[fmt->map_size - 1][i++] != '1')
+				print_error();
 }
 
 void	check_mapline(char *line, t_fmt *fmt, t_spr *spr)
 {
 	int	i;
 
-	i = -1;
-	while (ft_isspace(line[++i]))
-		line[i] = '1';
+	i = 0;
+	while (ft_isspace(line[i]))
+		i++;
 	if (line[i++] != '1' || line[ft_strlen(line) - 1] != '1')
 		print_error();
 	while (line[++i])
 	{
+		if (line[i] == '0' && fmt->map[fmt->map_size - 1][i] == ' ')
+			print_error();
 		if (line[i] == '2')
 			ft_sprite(fmt, i, spr);
-		if (line[i] == ' ')
-			line[i] = '1';
 		if (line[i] == 'W' || line[i] == 'E' || line[i] == 'N'
 			|| line[i] == 'S')
 			get_pos_camera_dir(&fmt, line[i], i);
@@ -89,8 +94,9 @@ void	check_mapline(char *line, t_fmt *fmt, t_spr *spr)
 			print_error();
 		if (i > ft_strlen(fmt->map[fmt->map_size - 1]) - 1 && line[i] != '1')
 			print_error();
+		check_before_line(fmt, line, i, 0);
 	}
-	check_before_line(fmt, line, i);
+	check_before_line(fmt, line, i, 1);
 }
 
 char	**read_map(char *line, t_fmt **fmt)
