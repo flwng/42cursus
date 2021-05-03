@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:07:06 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/14 15:51:53 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:35:59 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	res = 0;
 	while (lst)
 	{
-		if (!(temp = ft_lstnew(f(lst->content))))
+		temp = ft_lstnew(f(lst->content));
+		if (!(temp))
 		{
 			ft_lstclear(&res, del);
 			return (0);

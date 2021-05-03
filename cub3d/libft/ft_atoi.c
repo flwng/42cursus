@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:26:22 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/14 19:34:56 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:33:30 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	int sum;
-	int sign;
+	int	sum;
+	int	sign;
 
 	sign = 1;
 	sum = 0;

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltortora <ltortora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 09:37:11 by ltortora          #+#    #+#             */
-/*   Updated: 2021/02/02 16:55:42 by ltortora         ###   ########.fr       */
+/*   Created: 2021/05/02 20:38:50 by flwang            #+#    #+#             */
+/*   Updated: 2021/05/03 14:28:35 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int				nextline(char *str)
+int	nextline(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,10 +26,10 @@ int				nextline(char *str)
 	return (0);
 }
 
-void			checkavanzo(char avanzo[BUFFER_SIZE + 1], char *buff)
+void	checkavanzo(char avanzo[BUFFER_SIZE + 1], char *buff)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	if (nextline(avanzo) == 1)
@@ -51,24 +51,33 @@ void			checkavanzo(char avanzo[BUFFER_SIZE + 1], char *buff)
 	avanzo[j] = 0;
 }
 
-int				get_next_line(int fd, char **line)
+int	init(char **line, int *ris, char **buff, int fd)
+{
+	*line = 0;
+	*buff = malloc(BUFFER_SIZE + 1);
+	*ris = defr(line, fd);
+	if (*ris == -1 || !*buff)
+		return (-1);
+	*ris = 1;
+	*buff[0] = 0;
+	return (0);
+}
+
+int	get_next_line(int fd, char **line)
 {
 	static char				avanzo[BUFFER_SIZE + 1];
 	char					*buff;
 	int						ris;
 
-	*line = 0;
-	ris = defr(line, fd);
-	if (ris == -1 || !(buff = malloc(BUFFER_SIZE + 1)))
+	if ((init(line, &ris, &buff, fd)) == -1)
 		return (-1);
 	*line = ft_strnjoin(*line, avanzo);
-	ris = 1;
-	buff[0] = 0;
 	while (ris > 0)
 	{
 		if (nextline(avanzo) == 1 || nextline(buff) == 1)
 			break ;
-		if ((ris = read(fd, buff, BUFFER_SIZE)) == -1)
+		ris = read(fd, buff, BUFFER_SIZE);
+		if (ris == -1)
 			return (freestuff(line, buff));
 		buff[ris] = 0;
 		*line = ft_strnjoin(*line, buff);

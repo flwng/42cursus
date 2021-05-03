@@ -9,6 +9,8 @@ void	map_firstrow(char *line, t_fmt fmt)
 	{
 		while (line[i])
 		{
+			if (line[i] == ' ')
+				line[i] = '1';
 			if (line[i] != '1' && !(ft_isspace(line[i])))
 				print_error();
 			i++;
@@ -18,6 +20,8 @@ void	map_firstrow(char *line, t_fmt fmt)
 	{
 		while (line[i])
 		{
+			if (line[i] == ' ')
+				line[i] = '1';
 			if (line[i] == '0' && fmt.map[0][i] != '1')
 				print_error();
 			i++;
@@ -25,8 +29,12 @@ void	map_firstrow(char *line, t_fmt fmt)
 	}
 }
 
-void	get_camera_dir(t_fmt **fmt, char c)
+void	get_pos_camera_dir(t_fmt **fmt, char c, int i)
 {
+	if ((*fmt)->px != -1)
+		print_error();
+	(*fmt)->px = (double)i;
+	(*fmt)->py = (double)(*fmt)->map_size;
 	if (c == 'N')
 	{
 		(*fmt)->pa = 3 * PI / 2;
@@ -35,7 +43,7 @@ void	get_camera_dir(t_fmt **fmt, char c)
 	else if (c == 'S')
 	{
 		(*fmt)->dir_y = 1;
-		(*fmt)->pa = PI / 2; 
+		(*fmt)->pa = PI / 2;
 	}
 	else if (c == 'W')
 	{
@@ -51,7 +59,8 @@ void	get_camera_dir(t_fmt **fmt, char c)
 
 void	check_before_line(t_fmt *fmt, char *line, int i)
 {
-	while (ft_strlen(line) < ft_strlen(fmt->map[fmt->map_size - 1]) && fmt->map[fmt->map_size - 1][i])	
+	while (ft_strlen(line) < ft_strlen(fmt->map[fmt->map_size - 1])
+		&& fmt->map[fmt->map_size - 1][i])
 		if (fmt->map[fmt->map_size - 1][i++] != '1')
 			print_error();
 }
@@ -60,29 +69,26 @@ void	check_mapline(char *line, t_fmt *fmt, t_spr *spr)
 {
 	int	i;
 
-	i = 0;
-	while (ft_isspace(line[i]))
-		i++;
-	if (line[i++] != '1' || line[ft_strlen(line) - 1] != '1') 
+	i = -1;
+	while (ft_isspace(line[++i]))
+		line[i] = '1';
+	if (line[i++] != '1' || line[ft_strlen(line) - 1] != '1')
 		print_error();
 	while (line[++i])
 	{
 		if (line[i] == '2')
 			ft_sprite(fmt, i, spr);
-		if (line[i] == 'W' || line[i] == 'E' || line[i] == 'N' || line[i] == 'S')
-		{
-			if (fmt->px != -1)
-				print_error();
-			fmt->px = (double)i;
-			fmt->py = (double)fmt->map_size;
-			get_camera_dir(&fmt, line[i]);
-		}
+		if (line[i] == ' ')
+			line[i] = '1';
+		if (line[i] == 'W' || line[i] == 'E' || line[i] == 'N'
+			|| line[i] == 'S')
+			get_pos_camera_dir(&fmt, line[i], i);
 		if (line[i] != '0' && line[i] != '1' && line[i] != '2' && \
 			line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && \
 			line[i] != 'W' && !(ft_isspace(line[i])))
 			print_error();
 		if (i > ft_strlen(fmt->map[fmt->map_size - 1]) - 1 && line[i] != '1')
-				print_error();
+			print_error();
 	}
 	check_before_line(fmt, line, i);
 }
@@ -92,6 +98,7 @@ char	**read_map(char *line, t_fmt **fmt)
 	char	**map;
 	int		i;
 	int		len;
+
 	map = (char **)malloc(sizeof(char *) * (*fmt)->map_size + 2);
 	i = 0;
 	while (i < (*fmt)->map_size)
@@ -106,5 +113,6 @@ char	**read_map(char *line, t_fmt **fmt)
 	if ((*fmt)->mapb < len)
 		(*fmt)->mapb = len;
 	(*fmt)->map_size += 1;
+	free((*fmt)->map);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:04:54 by flwang            #+#    #+#             */
-/*   Updated: 2021/04/26 20:26:41 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 15:49:02 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,24 @@ void	get_min_dist(t_all *all, double tmpx, double tmpy, double disth)
 	}
 }
 
+void	init_var(t_all *all, double *disth)
+{
+	int		i;
+
+	i = 0;
+	while (i < all->spr.len)
+		all->spr.act[i++] = -1;
+	all->spr.nact = 0;
+	all->cam.dist_sprite = 10000000;
+	*disth = 10000000;
+}
+
 void	draw_ray(t_all *all)
 {
 	int		r_count;
 	double	tmpx;
 	double	tmpy;
 	double	disth;
-	int		i;
 
 	r_count = 0;
 	all->cam.ra = all->fmt.pa - PI / 6;
@@ -75,21 +86,15 @@ void	draw_ray(t_all *all)
 	all->cam.sprite_hit = 0;
 	while (r_count < all->fmt.res_x)
 	{
-		i = 0;
-		while (i < all->spr.len)
-			all->spr.act[i++] = -1;
-		all->spr.nact = 0;
-		all->cam.dist_sprite = 10000000;
-		disth = 10000000;
+		init_var(all, &disth);
 		check_h(all, &disth);
 		tmpx = all->cam.rx;
 		tmpy = all->cam.ry;
 		check_v(all, disth);
 		get_min_dist(all, tmpx, tmpy, disth);
 		draw_walls_sprite(all, r_count);
-	   	if (all->cam.ra > PI * 2)
+		if (all->cam.ra > PI * 2)
 			all->cam.ra -= PI * 2;
-		i = 0;
 		r_count++;
 	}
 }

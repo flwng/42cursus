@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 14:08:26 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/18 17:45:22 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:41:37 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (0);
 	i = 0;
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	if (!(ptr = malloc(len)))
+	ptr = malloc(len);
+	if (!(ptr))
 		return (0);
 	ft_strlcpy(ptr, s1, len);
 	ft_strlcat(ptr, s2, len);

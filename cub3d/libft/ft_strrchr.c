@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:46:20 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/13 12:57:57 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:42:59 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ char	*ft_strrchr(const char *s, int c)
 			ptr = s;
 		s++;
 	}
-	return (char *)(ptr);
+	return ((char *)(ptr));
 }

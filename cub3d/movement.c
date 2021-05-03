@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 15:58:16 by flwang            #+#    #+#             */
-/*   Updated: 2021/04/24 19:59:18 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 15:49:02 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	up_down(t_all *all)
 	{
 		all->fmt.ppy += all->fmt.dir_y * 5;
 		all->fmt.ppx += all->fmt.dir_x * 5;
-		if (all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '1' \
-			|| all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '2')
+		if (all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '1'
+			|| all->fmt.map[(int)all->fmt.ppy / 64] \
+			[(int)all->fmt.ppx / 64] == '2')
 		{
 			all->fmt.ppy -= all->fmt.dir_y * 5;
 			all->fmt.ppx -= all->fmt.dir_x * 5;
@@ -29,8 +30,9 @@ void	up_down(t_all *all)
 	{
 		all->fmt.ppy -= all->fmt.dir_y * 5;
 		all->fmt.ppx -= all->fmt.dir_x * 5;
-		if (all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '1' \
-			|| all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '2')
+		if (all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '1'
+			|| all->fmt.map[(int)all->fmt.ppy / 64] \
+			[(int)all->fmt.ppx / 64] == '2')
 		{
 			all->fmt.ppy += all->fmt.dir_y * 5;
 			all->fmt.ppx += all->fmt.dir_x * 5;
@@ -45,7 +47,8 @@ void	left_right(t_all *all)
 		all->fmt.ppx -= 5 * -sin(all->fmt.pa);
 		all->fmt.ppy -= 5 * cos(all->fmt.pa);
 		if (all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '1' \
-			|| all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '2')
+			|| all->fmt.map[(int)all->fmt.ppy / 64] \
+			[(int)all->fmt.ppx / 64] == '2')
 		{
 			all->fmt.ppx += 5 * -sin(all->fmt.pa);
 			all->fmt.ppy += 5 * cos(all->fmt.pa);
@@ -56,7 +59,8 @@ void	left_right(t_all *all)
 		all->fmt.ppx += 5 * -sin(all->fmt.pa);
 		all->fmt.ppy += 5 * cos(all->fmt.pa);
 		if (all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '1' \
-			|| all->fmt.map[(int)all->fmt.ppy / 64][(int)all->fmt.ppx / 64] == '2')
+			|| all->fmt.map[(int)all->fmt.ppy / 64] \
+			[(int)all->fmt.ppx / 64] == '2')
 		{
 			all->fmt.ppx -= 5 * -sin(all->fmt.pa);
 			all->fmt.ppy -= 5 * cos(all->fmt.pa);

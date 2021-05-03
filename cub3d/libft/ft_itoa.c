@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 16:19:50 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/13 18:40:06 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:35:13 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	size(int n)
 	return (s + 1);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*ptr;
 	unsigned int	nbr;
@@ -46,7 +46,8 @@ char		*ft_itoa(int n)
 
 	len = size(n);
 	limit = 0;
-	if (!(ptr = malloc(len + 1)))
+	ptr = malloc(len + 1);
+	if (!(ptr))
 		return (0);
 	ptr[len--] = 0;
 	if (n < 0)

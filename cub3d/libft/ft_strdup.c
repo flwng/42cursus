@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:46:33 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/13 19:21:41 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:41:20 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*ft_strdup(const char *s1)
 	size_t		len;
 
 	len = ft_strlen(s1) + 1;
-	if (!(ptr = malloc(len)))
+	ptr = malloc(len);
+	if (!(ptr))
 		return (0);
-	return (char *)(ft_memcpy(ptr, s1, len));
+	return ((char *)(ft_memcpy(ptr, s1, len)));
 }

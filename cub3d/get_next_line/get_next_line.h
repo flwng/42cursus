@@ -6,7 +6,7 @@
 /*   By: ltortora <ltortora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:52:37 by ltortora          #+#    #+#             */
-/*   Updated: 2021/02/03 12:28:17 by ltortora         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:39:31 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-#define BUFFER_SIZE 1
+# define BUFFER_SIZE 1
+
 int				ft_nstrlen(char *s);
 char			*ft_strnjoin(char *s1, char *s2);
 int				nextline(char *str);

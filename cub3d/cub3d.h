@@ -14,7 +14,7 @@
 
 # define PI 3.1415926535
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*adr;
@@ -23,7 +23,7 @@ typedef struct	s_img
 	int		end;
 }				t_img;
 
-typedef struct	s_fmt
+typedef struct s_fmt
 {
 	int			res_x;
 	int			res_y;
@@ -48,7 +48,7 @@ typedef struct	s_fmt
 	int			mapb;
 }				t_fmt;
 
-typedef	struct	s_cam
+typedef struct s_cam
 {
 	double		rx;
 	double		ry;
@@ -58,12 +58,10 @@ typedef	struct	s_cam
 	char		sprite_hit;
 	double		lineh;
 	double		lineo;
-	double		rx_sprite;
-	double		ry_sprite;
 	double		dist_sprite;
 }				t_cam;
 
-typedef	struct	s_tex
+typedef struct s_tex
 {
 	t_img		north;
 	t_img		south;
@@ -86,7 +84,7 @@ typedef	struct	s_tex
 	double		ty_o;
 }				t_tex;
 
-typedef	struct	s_spr
+typedef struct s_spr
 {
 	double		*sx;
 	double		*sy;
@@ -95,9 +93,14 @@ typedef	struct	s_spr
 	int			len;
 	int			*act;
 	int			nact;
+	double		spriteh;
+	double		start;
+	double		end;
+	double		spritex;
+	double		spritey;
 }				t_spr;
 
-typedef	struct	s_all
+typedef struct s_all
 {
 	t_img	img;
 	t_fmt	fmt;
@@ -107,30 +110,35 @@ typedef	struct	s_all
 	void	*mlx;
 	void	*win;
 	int		key[126];
-}			t_all;
+}				t_all;
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void	clear_image(t_img *img, t_fmt fmt);
-void	print_error(void);
-t_fmt	read_info(char *argv, t_spr *spr);
-char	**read_map(char *line, t_fmt **fmt);
-int		ft_atoi_base(char *str, char *base);
-char	*ft_itoa_base(int n, char *base);
-void	init_fmt(t_fmt *fmt);
-void	check_double(char *line, t_fmt fmt);
-void	map_lastrow(t_fmt fmt);
-void	check_nl_map(char *line, int *map_nl, int *map);
-void	check_fmt(t_fmt fmt);
-void	check_mapline(char *line, t_fmt *fmt, t_spr *spr);
-void	map_firstrow(char *line, t_fmt fmt);
-void	load_images(t_fmt *fmt, void *mlx, t_tex *tex);
-void	move_player(t_all *all);
-void	draw_ray(t_all *all);
-void	check_h(t_all *all, double *disth);
-void	check_v(t_all *all, double disth);
-void	get_wall_text(t_all *all, int r_count); 
-void	ceil_floor(t_img *img, t_fmt *fmt);
-void	get_sprite(t_all *all, int r_count);
-void	ft_sprite(t_fmt *fmt, int i, t_spr *spr);
-//void	init_spr_struct(t_spr *spr);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			clear_image(t_img *img, t_fmt fmt);
+void			print_error(void);
+t_fmt			read_info(char *argv, t_spr *spr);
+char			**read_map(char *line, t_fmt **fmt);
+int				ft_atoi_base(char *str, char *base);
+char			*ft_itoa_base(int n, char *base);
+void			init_fmt(t_fmt *fmt);
+void			check_double(char *line, t_fmt fmt);
+void			map_lastrow(t_fmt fmt);
+void			check_nl_map(char *line, int *map_nl, int *map);
+void			check_fmt(t_fmt fmt);
+void			check_mapline(char *line, t_fmt *fmt, t_spr *spr);
+void			map_firstrow(char *line, t_fmt fmt);
+void			load_images(t_fmt *fmt, void *mlx, t_tex *tex);
+void			move_player(t_all *all);
+void			draw_ray(t_all *all);
+void			check_h(t_all *all, double *disth);
+void			check_v(t_all *all, double disth);
+void			get_wall_text(t_all *all, int r_count);
+void			ceil_floor(t_img *img, t_fmt *fmt);
+void			get_sprite(t_all *all, int r_count);
+void			ft_sprite(t_fmt *fmt, int i, t_spr *spr);
+unsigned int	get_tex_color(t_img *data, int x, int y);
+void			get_sprite(t_all *all, int r_count);
+void			get_center(t_all *all);
+int				rgb_hex(char *line);
+void			ft_screenshot(char *argv, t_all *all);
+int				close_win(t_all *all);
 #endif

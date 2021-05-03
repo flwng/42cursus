@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:03:41 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/14 19:08:29 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:43:35 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	isinboth(char a, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	len;
 	size_t	i;
@@ -39,7 +39,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 		i++;
 	while (isinboth(s1[len - 1], set) && i < len)
 		len--;
-	if (!(ptr = malloc(len - i + 1)))
+	ptr = malloc(len - i + 1);
+	if (!(ptr))
 		return (0);
 	while (i < len)
 		ptr[k++] = s1[i++];

@@ -6,7 +6,7 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 16:13:50 by flwang            #+#    #+#             */
-/*   Updated: 2021/01/20 16:39:12 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:40:04 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ static int	cntword(char const *s, char c)
 	return (count);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	char	*startw;
 	size_t	index;
 	size_t	size;
 
-	if (!s || !(split = (char **)malloc(sizeof(char *) * cntword(s, c) + 1)))
+	split = (char **)malloc(sizeof(char *) * cntword(s, c) + 1);
+	if (!s || !(split))
 		return (0);
 	index = 0;
 	while (*s)
@@ -49,8 +50,7 @@ char		**ft_split(char const *s, char c)
 			while (*s && *s != c)
 				s++;
 			size = s - startw + 1;
-			if (!(split[index] = (char *)malloc(size)))
-				return (0);
+			split[index] = (char *)malloc(size);
 			ft_strlcpy(split[index++], startw, size);
 		}
 		else

@@ -27,19 +27,8 @@ void	print_error(void)
 	exit(1);
 }
 
-void	load_images(t_fmt *fmt, void *mlx, t_tex *tex)
+void	get_sprite_address(t_tex *tex)
 {
-	tex->north.img = mlx_xpm_file_to_image(mlx, fmt->north, &(tex->nw), &(tex->nh));
-	tex->south.img = mlx_xpm_file_to_image(mlx, fmt->south, &(tex->sw), &(tex->sh));
-	tex->east.img = mlx_xpm_file_to_image(mlx, fmt->east, &(tex->ew), &(tex->eh));
-	tex->west.img = mlx_xpm_file_to_image(mlx, fmt->west, &(tex->ww), &(tex->wh));
-	tex->sprite.img = mlx_xpm_file_to_image(mlx, fmt->sprite, &(tex->spw), &(tex->sph));
-	if (tex->north.img == 0 || tex->south.img == 0 || tex->east.img == 0 ||
-			tex->west.img == 0 || tex->sprite.img == 0)
-	{
-		perror("Error\n");
-		exit(1);
-	}
 	tex->north.adr = mlx_get_data_addr(tex->north.img,
 			&(tex->north.bpp), &(tex->north.len), &(tex->north.end));
 	tex->south.adr = mlx_get_data_addr(tex->south.img,
@@ -52,37 +41,24 @@ void	load_images(t_fmt *fmt, void *mlx, t_tex *tex)
 			&(tex->sprite.bpp), &(tex->sprite.len), &(tex->sprite.end));
 }
 
-void	ft_sprite(t_fmt *fmt, int i, t_spr *spr)
+void	load_images(t_fmt *fmt, void *mlx, t_tex *tex)
 {
-	double	*tmpx;
-	double	*tmpy;
-	int		iter;
-
-	if (spr->len == 0)
+	tex->north.img = mlx_xpm_file_to_image(mlx, fmt->north,
+			&(tex->nw), &(tex->nh));
+	tex->south.img = mlx_xpm_file_to_image(mlx, fmt->south,
+			&(tex->sw), &(tex->sh));
+	tex->east.img = mlx_xpm_file_to_image(mlx, fmt->east,
+			&(tex->ew), &(tex->eh));
+	tex->west.img = mlx_xpm_file_to_image(mlx, fmt->west,
+			&(tex->ww), &(tex->wh));
+	tex->sprite.img = mlx_xpm_file_to_image(mlx, fmt->sprite,
+			&(tex->spw), &(tex->sph));
+	if (tex->north.img == 0 || tex->south.img == 0
+		|| tex->east.img == 0 || tex->west.img == 0
+		|| tex->sprite.img == 0)
 	{
-		spr->sx = malloc(sizeof(double) * (spr->len + 1));
-		spr->sy = malloc(sizeof(double) * (spr->len + 1));
-		spr->sx[spr->len] = i * 64;
-		spr->sy[spr->len] = fmt->map_size * 64;
-		spr->len++;
+		perror("Error\n");
+		exit(1);
 	}
-	else
-	{
-		tmpx = malloc(sizeof(double) * (spr->len + 1));
-		tmpy = malloc(sizeof(double) * (spr->len + 1));
-		iter = 0;
-		while (iter < spr->len)
-		{
-			tmpx[iter] = spr->sx[iter];
-			tmpy[iter] = spr->sy[iter];
-			iter++;
-		}
-		free(spr->sx);
-		free(spr->sy);
-		tmpx[iter] = i * 64;
-		tmpy[iter] = fmt->map_size * 64;
-		spr->sx = tmpx;
-		spr->sy = tmpy;
-		spr->len++;
-	}
+	get_sprite_address(tex);
 }

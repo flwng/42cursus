@@ -31,7 +31,7 @@ void	check_double(char *line, t_fmt fmt)
 
 void	map_lastrow(t_fmt fmt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (fmt.map[fmt.map_size - 1][i])
@@ -42,7 +42,7 @@ void	map_lastrow(t_fmt fmt)
 		if (fmt.map[fmt.map_size - 2][i] == '0' &&
 			fmt.map[fmt.map_size - 1][i] != '1')
 			print_error();
-	i++;
+		i++;
 	}
 }
 
@@ -58,8 +58,8 @@ void	check_nl_map(char *line, int *map_nl, int *map)
 
 void	check_fmt(t_fmt fmt)
 {
-	if (fmt.ceil == 1 || fmt.floor == -1 || fmt.east == 0 || fmt.west == 0 ||
-		fmt.north == 0 || fmt.south == 0 || fmt.px == -1 || fmt.sprite == 0 ||
-		fmt.map == 0)
+	if (fmt.ceil == -1 || fmt.floor == -1 || fmt.east == 0 || fmt.west == 0
+		|| fmt.north == 0 || fmt.south == 0 || fmt.px == -1 || fmt.sprite == 0
+		|| fmt.map == 0)
 		print_error();
 }	
