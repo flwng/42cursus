@@ -57,10 +57,11 @@ void	check_before_line(t_fmt *fmt, char *line, int i, int check)
 {
 	if (check == 0)
 	{
-		if ((i > 0 && line[i] == ' ') && ((line[i - 1] != ' ' && line[i - 1] != '1')
-			|| (line[i + 1] == ' ' && line[i + 1] != '1')
-			|| (fmt->map[fmt->map_size - 1][i] != '1'
-			&& fmt->map[fmt->map_size - 1][i] != ' ')))
+		if ((i > 0 && line[i] == ' ') && ((line[i - 1] != ' '
+					&& line[i - 1] != '1')
+				|| (line[i + 1] == ' ' && line[i + 1] != '1')
+				|| (fmt->map[fmt->map_size - 1][i] != '1'
+				&& fmt->map[fmt->map_size - 1][i] != ' ')))
 			print_error();
 	}
 	else

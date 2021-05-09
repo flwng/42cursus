@@ -9,12 +9,16 @@ void	read_res(char *line, t_fmt **fmt)
 			line++;
 		if (ft_isdigit(*line))
 			(*fmt)->res_x = ft_atoi(line);
+		if ((*fmt)->res_x <= 0)
+			print_error();
 		while (ft_isdigit(*line))
 			line++;
 		while (ft_isspace(*line))
 			line++;
 		if (ft_isdigit(*line))
 			(*fmt)->res_y = ft_atoi(line);
+		if ((*fmt)->res_y <= 0)
+			print_error();
 		while (ft_isdigit(*line))
 			line++;
 		if (*line != 0)

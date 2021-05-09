@@ -6,12 +6,10 @@
 /*   By: flwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:00:41 by flwang            #+#    #+#             */
-/*   Updated: 2021/05/03 17:46:22 by flwang           ###   ########.fr       */
+/*   Updated: 2021/05/05 19:48:03 by flwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
-#include "libft/libft.h"
-#include "mlx/mlx.h"
 
 int	key_press(int key, t_all *all)
 {
