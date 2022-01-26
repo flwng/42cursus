@@ -13,5 +13,5 @@ The objective of this project is to create a minigame, where the graphic renderi
 To run the program, clone the repository and access it.
 Then use the make command
 ```
-make
+make all
 ```
