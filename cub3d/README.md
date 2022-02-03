@@ -11,7 +11,12 @@ The objective of this project is to create a minigame, where the graphic renderi
 <a name="execution"></a>
 ## How to run the program
 To run the program, clone the repository and access it.
-Then use the make command
+Then use the make command to compile all the files:
 ```
 make all
+```
+
+Then run the executable file:
+```
+./cub3d
 ```
