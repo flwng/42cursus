@@ -18,5 +18,5 @@ make all
 
 Then run the executable file:
 ```
-./cub3d
+./cub3D
 ```
